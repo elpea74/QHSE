@@ -1,0 +1,65 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Users.master.cs" Inherits="QHSE.Users.Users" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link href="<%= Page.ResolveUrl("~/Style/main.css") %>" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" method="post" runat="server">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <%--<div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <%--<a class="navbar-brand" href="#">Logo</a>
+                </div>--%>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                       <%-- <li><a href="ObservationList.aspx">Home</a></li>--%>
+                        <li>
+                            <a href="ReportList.aspx">Incident Reports 事件报告</a> 
+                        </li>
+                        
+
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Observation Cards 观察卡<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<%= Page.ResolveUrl("~/Users/ObservationList.aspx") %>">View Your Observation Cards 查看您的观察卡</a></li>
+                                <li><a href="<%= Page.ResolveUrl("~/Users/NewObservation.aspx") %>">New Observation Card 创建新观察卡</a></li>
+                            </ul>
+                        </li>
+                         <%--<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quiz 测验<span class="caret"></span></a>
+                             <ul class="dropdown-menu" >
+                                 <li><a href="<%= Page.ResolveUrl("~/Users/QuizList.aspx") %>">View Available Quizzes</a></li>
+                                 <li><a href="<%= Page.ResolveUrl("~/Users/OwnResultList.aspx") %>">View Your Quiz Results</a></li>  
+                             </ul>
+                        </li>--%>
+                        <%--<li><a href="#">Contact</a></li>--%>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="ChangePassword.aspx">Change Password 更改您的密码</a></li>
+                        <li><a href="../Logout.aspx"><span class="glyphicon glyphicon-log-out"></span>Log out 登出</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

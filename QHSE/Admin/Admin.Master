@@ -1,0 +1,131 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="QHSE.Admin.Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style>
+        .grid td, .grid th {
+            /*text-align: center;*/
+            border-style: double;
+            width: inherit;
+            column-width: auto;
+            max-height: none;
+            height: 30px;
+            text-align: center;
+        }
+
+        .grid th {
+            background-color: #eee;
+            background-image: linear-gradient(to top, rgba(100,100,100,0.2) 0%, rgba(255,255,255,0.2) 100%);
+        }
+    </style>
+    <script src="../Scripts/jquery.responsivetable.min.js"></script> 
+     <script type="text/javascript">
+        $(document).ready(function () {
+            setupResponsiveTables();
+        });
+
+        function setupResponsiveTables() {
+            $('.responsiveTable1').responsiveTable();
+        }
+    </script>
+    <link href="<%= Page.ResolveUrl("~/Style/main.css") %>" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                  
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <%
+                        if (HttpContext.Current.User.IsInRole("Admin"))
+                        { %>
+                    <ul class="nav navbar-nav">
+                        <li><a href="ReportList.aspx">Home</a></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Incident Reports<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="ReportList.aspx">View Incident Reports</a></li>
+                                <li><a href="CreateReport.aspx">Create New Incident Report</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Observation Cards<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<%= Page.ResolveUrl("~/Admin/ObservationReport.aspx") %>">View Observation Overview</a></li>
+                                <li><a href="CreateObservationAdmin.aspx">New Observation Card</a></li>
+                            </ul>
+                        </li>
+                        
+                        <%--<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quizzes<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="QuizResultList.aspx">View Quiz Results</a></li>
+                                <li><a href="CreateQuiz.aspx">Create New Quiz</a></li>
+                            </ul>
+                        </li>--%>
+                        <li><a href="ManageUsers.aspx">Manage Users</a></li>
+                        <li><a href="ManageDepartments.aspx">Departments</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="ChangePassword.aspx">Change Password</a></li>
+                        <li><a href="../Logout.aspx"><span class="glyphicon glyphicon-log-out"></span>Log out</a></li>
+                    </ul>
+                    <% }
+                        if (HttpContext.Current.User.IsInRole("Sub-Admin"))
+                        { %>
+                    <ul class="nav navbar-nav">
+                        <li><a href="ReportList.aspx">Home</a></li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Incident Reports<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="ReportList.aspx">View Incident Reports</a></li>
+                                <li><a href="CreateReport.aspx">Create New Incident Report</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Observation Cards<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="<%= Page.ResolveUrl("~/Admin/ObservationReport.aspx") %>">View Observation Overview</a></li>
+                                <li><a href="CreateObservationAdmin.aspx">New Observation Card</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="ManageUsers.aspx">Manage Users</a></li>
+                       <%-- <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quizzes<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="QuizResultList.aspx">View Quiz Results</a></li>
+                            </ul>
+                        </li>--%>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="ChangePassword.aspx">Change Password</a></li>
+                        <li><a href="../Logout.aspx"><span class="glyphicon glyphicon-log-out"></span>Log out</a></li>
+                    </ul>
+                      <% }  %>
+                </div>
+            </div>
+        </nav>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <%--Hello, <asp:Label ID="lblName" runat="server" Text=""></asp:Label>--%>
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
